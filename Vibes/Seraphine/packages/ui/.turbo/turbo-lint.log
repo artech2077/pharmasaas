@@ -1,0 +1,4 @@
+
+> @pharmasaas/ui@0.1.0 lint /Users/faroukbousaaid/Vibes/Seraphine/packages/ui
+> eslint "src/**/*.{ts,tsx}"
+

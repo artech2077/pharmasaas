@@ -1,0 +1,4 @@
+
+> @pharmasaas/clients@0.1.0 build /Users/faroukbousaaid/Vibes/Seraphine/packages/clients
+> tsc -p tsconfig.json
+

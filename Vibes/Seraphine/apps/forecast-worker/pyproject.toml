@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "forecast-worker"
+version = "0.1.0"
+description = "Python worker for demand forecasting jobs."
+authors = ["PharmaSaaS <engineering@pharmasaas.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pandas = "^2.1.4"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.4"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

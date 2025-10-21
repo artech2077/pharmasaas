@@ -1,0 +1,4 @@
+
+> @pharmasaas/domain@0.1.0 build /Users/faroukbousaaid/Vibes/Seraphine/packages/domain
+> tsc -p tsconfig.json
+

@@ -1,0 +1,28 @@
+{
+  "name": "@pharmasaas/clients",
+  "version": "0.1.0",
+  "private": false,
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "clean": "rimraf dist",
+    "lint": "eslint \"src/**/*.ts\"",
+    "test": "vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@pharmasaas/config": "workspace:*",
+    "@pharmasaas/domain": "workspace:*"
+  },
+  "devDependencies": {
+    "rimraf": "^5.0.5"
+  }
+}

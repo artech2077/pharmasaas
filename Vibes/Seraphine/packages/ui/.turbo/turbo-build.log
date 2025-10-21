@@ -1,0 +1,4 @@
+
+> @pharmasaas/ui@0.1.0 build /Users/faroukbousaaid/Vibes/Seraphine/packages/ui
+> tsc -p tsconfig.json
+

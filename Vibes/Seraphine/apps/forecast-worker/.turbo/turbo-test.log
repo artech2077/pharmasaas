@@ -1,0 +1,5 @@
+
+> @pharmasaas/forecast-worker@0.1.0 test /Users/faroukbousaaid/Vibes/Seraphine/apps/forecast-worker
+> echo 'Run poetry run pytest'
+
+Run poetry run pytest

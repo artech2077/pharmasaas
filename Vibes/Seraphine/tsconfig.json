@@ -1,0 +1,16 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "composite": true
+  },
+  "files": [],
+  "references": [
+    { "path": "./packages/domain" },
+    { "path": "./packages/db" },
+    { "path": "./packages/ui" },
+    { "path": "./packages/config" },
+    { "path": "./packages/clients" },
+    { "path": "./apps/web" },
+    { "path": "./apps/api" }
+  ]
+}

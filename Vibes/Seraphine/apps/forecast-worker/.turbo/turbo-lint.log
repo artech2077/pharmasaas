@@ -1,0 +1,5 @@
+
+> @pharmasaas/forecast-worker@0.1.0 lint /Users/faroukbousaaid/Vibes/Seraphine/apps/forecast-worker
+> echo 'Run poetry run ruff .'
+
+Run poetry run ruff .

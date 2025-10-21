@@ -1,0 +1,2 @@
+# Introduction
+This document outlines the complete fullstack architecture for PharmaSaaS, covering backend services, frontend implementation, data pipelines, and operational workflows required to deliver guided cash reconciliation, inventory intelligence, compliance reporting, and AI forecasting as defined in the PRD. The architecture opts for a pragmatic, modular monolith deployed on managed serverless infrastructure so a two-person team can operate with confidence while meeting the security, uptime, and audit expectations of Moroccan pharmacies.

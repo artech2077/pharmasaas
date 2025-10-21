@@ -1,0 +1,9 @@
+node_modules
+.vscode
+.idea
+.DS_Store
+.next
+dist
+coverage
+apps/forecast-worker/.venv
+.env

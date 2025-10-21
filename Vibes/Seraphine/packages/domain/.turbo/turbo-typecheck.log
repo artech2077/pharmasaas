@@ -1,0 +1,4 @@
+
+> @pharmasaas/domain@0.1.0 typecheck /Users/faroukbousaaid/Vibes/Seraphine/packages/domain
+> tsc --noEmit
+

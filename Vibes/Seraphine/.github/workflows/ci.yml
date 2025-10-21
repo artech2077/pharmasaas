@@ -1,0 +1,111 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  lint-test:
+    name: Lint, Typecheck, and Test
+    runs-on: ubuntu-latest
+    env:
+      TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+      TURBO_TEAM: pharmasaas
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8.15.1
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "pnpm"
+
+      - name: Cache turbo artifacts
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cache/turbo
+          key: ${{ runner.os }}-turbo-${{ hashFiles('pnpm-workspace.yaml', '**/package.json', 'turbo.json') }}
+          restore-keys: |
+            ${{ runner.os }}-turbo-
+
+      - name: Install dependencies
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Typecheck
+        run: pnpm typecheck
+
+      - name: Test
+        run: pnpm test
+
+  build-artifacts:
+    name: Build and Publish Artifacts
+    runs-on: ubuntu-latest
+    needs: lint-test
+    env:
+      TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+      TURBO_TEAM: pharmasaas
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8.15.1
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "pnpm"
+
+      - name: Cache turbo artifacts
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cache/turbo
+          key: ${{ runner.os }}-turbo-${{ hashFiles('pnpm-workspace.yaml', '**/package.json', 'turbo.json') }}
+          restore-keys: |
+            ${{ runner.os }}-turbo-
+
+      - name: Install dependencies
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Build web workspace
+        run: pnpm turbo run build --filter @pharmasaas/web...
+
+      - name: Build API workspace
+        run: pnpm turbo run build --filter @pharmasaas/api...
+
+      - name: Upload web bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: web-build
+          path: apps/web/.next
+
+      - name: Upload API handlers
+        uses: actions/upload-artifact@v4
+        with:
+          name: api-handlers
+          path: apps/web/.next/server/app/api
+
+      - name: Upload API bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: api-build
+          path: apps/api/dist

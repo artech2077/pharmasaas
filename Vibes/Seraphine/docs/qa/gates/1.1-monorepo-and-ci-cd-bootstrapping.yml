@@ -1,0 +1,46 @@
+schema: 1
+story: '1.1'
+story_title: 'Monorepo and CI/CD Bootstrapping'
+gate: FAIL
+status_reason: 'Build pipeline skips producing an artifact for @pharmasaas/api, so AC3 remains unmet despite the new workspace.'
+reviewer: 'Quinn (Test Architect)'
+updated: '2025-10-21T00:42:03Z'
+top_issues:
+  - severity: high
+    summary: 'CI skips building/uploading the standalone API artifact'
+    details: '.github/workflows/ci.yml:89-102 only publishes Next.js outputs; no @pharmasaas/api dist is generated for downstream consumers.'
+    suggested_owner: dev
+  - severity: medium
+    summary: 'Web workspace still lacks meaningful tests'
+    details: 'apps/web/tests/unit/sample.test.ts is a placeholder, leaving the health route and core scaffolding without automated coverage.'
+    suggested_owner: dev
+waiver:
+  active: false
+quality_score: 70
+expires: '2025-11-04T00:42:03Z'
+evidence:
+  tests_reviewed: 2
+  risks_identified: 2
+  trace:
+    ac_covered: [1, 2, 4]
+    ac_gaps: [3]
+nfr_validation:
+  security:
+    status: PASS
+    notes: 'Bootstrap-only changes; no new security surface detected.'
+  performance:
+    status: PASS
+    notes: 'Turbo/pnpm caching remains configured for all jobs.'
+  reliability:
+    status: FAIL
+    notes: 'Without an API artifact, deployment automation cannot verify or ship the service confidently.'
+  maintainability:
+    status: CONCERNS
+    notes: 'Placeholder tests reduce observability for regressions in the web workspace.'
+recommendations:
+  immediate:
+    - action: 'Update the build-artifacts job to build @pharmasaas/api and upload its dist output.'
+      refs: ['.github/workflows/ci.yml:89-102']
+  future:
+    - action: 'Replace the web placeholder test with meaningful coverage (e.g., health route smoke test).'
+      refs: ['apps/web/tests/unit/sample.test.ts']

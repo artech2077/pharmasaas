@@ -1,0 +1,4 @@
+
+> @pharmasaas/web@0.1.0 typecheck /Users/faroukbousaaid/Vibes/Seraphine/apps/web
+> tsc --noEmit
+

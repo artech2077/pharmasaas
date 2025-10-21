@@ -1,0 +1,12 @@
+{
+  "name": "@pharmasaas/forecast-worker",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "echo 'Python build handled by Poetry'",
+    "lint": "echo 'Run poetry run ruff .'",
+    "test": "echo 'Run poetry run pytest'",
+    "typecheck": "echo 'Python typing handled separately via mypy'"
+  }
+}
